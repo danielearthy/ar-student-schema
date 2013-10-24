@@ -1,18 +1,13 @@
 require_relative '../../db/config'
+require_relative 'person'
 require 'date'
 
-class Student < ActiveRecord::Base
-  validates :email, :format => { :with => /\w+@\w+\.\w{2,3}/}
-  validates :email, :uniqueness => true
+class Student < Person
   validates :age, :inclusion => {:in => 5..99}
-  validates :phone, :format => {:with =>  /\d{3}.*\d{3}.*\d{4}/ }
-
-
-
-  def name
-  	self[:first_name].to_s + " " + self[:last_name].to_s
-  end
-
+ 
+  has_many :student_teachers, :foreign_key => :student_id
+  has_many :teachers, :through => :student_teachers
+  
   def age
     now = Date.today
     age = now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)

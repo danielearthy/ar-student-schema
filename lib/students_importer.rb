@@ -9,7 +9,7 @@ module StudentsImporter
         if field_names.nil?
           field_names = data
         else
-          attribute_hash = Hash[field_names.zip(data)]
+          attribute_hash = Hash[field_names.zip(data)] # << ['teacher_id', Teacher.all.sample.id]]
           student = Student.create!(attribute_hash)
         end
       end
