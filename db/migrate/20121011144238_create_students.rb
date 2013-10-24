@@ -11,8 +11,6 @@ class CreateStudents < ActiveRecord::Migration
       t.date :birthday
       t.string :email
       t.string :phone
-      t.integer :age
-      t.timestamps
     end
     # HINT: checkout ActiveRecord::Migration.create_table
   end

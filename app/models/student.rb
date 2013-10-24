@@ -2,7 +2,13 @@ require_relative '../../db/config'
 require 'date'
 
 class Student < ActiveRecord::Base
-  
+  validates :email, :format => { :with => /\w+@\w+\.\w{2,3}/}
+  validates :email, :uniqueness => true
+  validates :age, :inclusion => {:in => 5..99}
+  validates :phone, :format => {:with =>  /\d{3}.*\d{3}.*\d{4}/ }
+
+
+
   def name
   	self[:first_name].to_s + " " + self[:last_name].to_s
   end
@@ -14,17 +20,3 @@ class Student < ActiveRecord::Base
   end
 end
 
- # student = Student.new
- # student.assign_attributes(3
- #      :first_name => "Kreay",
- #      :last_name => "Shawn",
- #      :birthday => Date.new(1989,9,24),
- #      :gender => 'female',
- #      :email => 'kreayshawn@oaklandhiphop.net',
- #      :phone => '(510) 555-1212 x4567'
- #    )
-
- # p student
-
- # p student.name
- # p student.age

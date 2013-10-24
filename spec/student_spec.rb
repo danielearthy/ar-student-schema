@@ -13,7 +13,7 @@ describe Student, "#name and #age" do
     @student.assign_attributes(
       :first_name => "Happy",
       :last_name => "Gilmore",
-      # :gender => 'male',
+      :gender => 'male',
       :birthday => Date.new(1970,9,1)
     )
   end
