@@ -6,8 +6,5 @@ class Person < ActiveRecord::Base
   validates :email, :uniqueness => true
   validates :phone, :format => {:with =>  /\d{3}.*\d{3}.*\d{4}/ }
 
-  def name
-  	self[:first_name].to_s + " " + self[:last_name].to_s
-  end
 end
 

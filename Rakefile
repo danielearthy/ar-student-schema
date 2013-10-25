@@ -4,6 +4,7 @@ require_relative 'db/config'
 require_relative 'lib/students_importer'
 require_relative 'lib/teachers_importer'
 require_relative 'lib/student_teachers_importer'
+require_relative 'lib/change_to_name'
 
 
 desc "create the database"
@@ -30,6 +31,11 @@ task "db:populate" do
   TeachersImporter.create
   StudentsImporter.import
   StudentTeachersImporter.create
+end
+
+desc "update the names"
+task "db:update" do
+  ChangeToName.update
 end
 
 desc 'Retrieves the current schema version number'
